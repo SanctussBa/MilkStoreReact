@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import milkImg from "../milk.jpg";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { useState } from "react";
@@ -40,7 +40,7 @@ const Product = () => {
           <div>
             <h2>{product.name} </h2>
             <h3 className="product-type">{product.type}</h3>
-            <p>{product.storage - liter} liters</p>
+            <p><span className="span-liter available">{product.storage - liter}</span> liters available</p>
           </div>
           <div>
             <input
@@ -55,12 +55,14 @@ const Product = () => {
             </p>
           </div>
           <div className="add-to-cart-button-container">
-            <button
-              onClick={() => addProduct(product.id, liter)}
-              className="add-to-cart-button"
-            >
-              Add to Cart
-            </button>
+            <Link to={"/shopping-cart"}>
+              <button
+                onClick={() => addProduct(product.id, liter)}
+                className="add-to-cart-button"
+              >
+                Add to Cart
+              </button>
+            </Link>
           </div>
         </div>
       </div>

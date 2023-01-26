@@ -9,6 +9,7 @@ import NoMatch from "./pages/NoMatch";
 import About from "./pages/About";
 import { DataProvider } from "./context/DataContext";
 import ShoppingCart from "./pages/ShoppingCart";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/about" element={<About />} />
           <Route path="/shopping-cart" element={<ShoppingCart />} />
           <Route path="/milk-products">

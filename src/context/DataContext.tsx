@@ -6,8 +6,6 @@ import {
   useState,
 } from "react";
 import { ICartProduct, IProduct } from "../types";
-import { setPriority } from "os";
-import { isTemplateSpan } from "typescript";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 type DataContextProps = {
@@ -25,6 +23,7 @@ type DataContext = {
   increaseCartQuantity: (id: string, quantity: number) => void;
   decreaseProductQantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
+  sendOrder: () => void;
 };
 
 const DataContext = createContext({} as DataContext);
@@ -64,11 +63,21 @@ export function DataProvider({ children }: DataContextProps) {
     checkCartProducts(list);
   };
 
+  const sendOrder = async () => {
+    cart.forEach(orderItem => {
+      fetch(`http://localhost:5283/api/MilkProducts/${orderItem.id}/${orderItem.quantity}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json"},
+      });
+      removeFromCart(orderItem.id);
+    })
+
+  }
+
   const cleanLocalStorage = () => {
     window.localStorage.removeItem("storage");
   };
 
-  const saveCartInLocalStorage = () => {};
 
   function increaseCartQuantity(id: string, quantity: number) {
     setCart((cart) => {
@@ -114,10 +123,7 @@ export function DataProvider({ children }: DataContextProps) {
     setFilterList(uniqueTypes);
   };
 
-  const addToCart = (id: string, quantity: number) => {
-    const newCartItem = { id: id, quantity: quantity };
-    cart.push(newCartItem);
-  };
+
 
   useEffect(() => {
     getSearchList();
@@ -125,9 +131,6 @@ export function DataProvider({ children }: DataContextProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listOfProducts]);
 
-  useEffect(() => {
-    saveCartInLocalStorage();
-  }, [cart]);
 
   return (
     <DataContext.Provider
@@ -141,7 +144,8 @@ export function DataProvider({ children }: DataContextProps) {
         increaseCartQuantity,
         cart,
         decreaseProductQantity,
-        removeFromCart
+        removeFromCart,
+        sendOrder
       }}
     >
       {children}

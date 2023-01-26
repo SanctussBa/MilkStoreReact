@@ -170,7 +170,8 @@ const Store = () => {
         <div className="filter-container">
           <div className="filter-head" onClick={handleFilterClick}>
             <BsFilterRight />
-            <p>Filter</p>
+            {showFilterDropdown ? <p className="filter-x">X</p> : <p>Filter</p>}
+            
           </div>
           <div
             className={`filter-all-items ${

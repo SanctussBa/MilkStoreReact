@@ -3,9 +3,13 @@ import CartItem from "../components/CartItem";
 import { useDataContext } from "../context/DataContext";
 
 const ShoppingCart = () => {
-  const { cart } = useDataContext();
+  const { cart, sendOrder } = useDataContext();
 
   const totalLiters = cart.reduce((n, { quantity }) => n + quantity, 0);
+  const orderProducts = () => {
+    sendOrder();
+    
+  }
 
   return (
     <div className="main-cart-container">
@@ -23,7 +27,10 @@ const ShoppingCart = () => {
             Total amount of liters:{" "}
             <span className="total-liters">{totalLiters}</span>
           </h3>
-          <button className="add-to-cart-button">Buy</button>
+          <Link to={"/checkout"}>
+            <button onClick={orderProducts} className="add-to-cart-button">Buy</button>
+          </Link>
+          
         </>
       ) : (
         <div className="cart-empty-container">
