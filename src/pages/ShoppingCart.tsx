@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import { useDataContext } from "../context/DataContext";
 
@@ -8,8 +8,7 @@ const ShoppingCart = () => {
   const totalLiters = cart.reduce((n, { quantity }) => n + quantity, 0);
   const orderProducts = () => {
     sendOrder();
-    
-  }
+  };
 
   return (
     <div className="main-cart-container">
@@ -28,9 +27,10 @@ const ShoppingCart = () => {
             <span className="total-liters">{totalLiters}</span>
           </h3>
           <Link to={"/checkout"}>
-            <button onClick={orderProducts} className="add-to-cart-button">Buy</button>
+            <button onClick={orderProducts} className="add-to-cart-button">
+              Buy
+            </button>
           </Link>
-          
         </>
       ) : (
         <div className="cart-empty-container">

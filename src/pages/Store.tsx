@@ -5,7 +5,7 @@ import Item from "../components/Item";
 import { useDataContext } from "../context/DataContext";
 import NoMatch from "./NoMatch";
 import CheckBox from "../components/CheckBox";
-import { BsFilterRight, BsSearch } from "react-icons/bs";
+import { BsFilterRight } from "react-icons/bs";
 
 const Store = () => {
   const {
@@ -23,7 +23,7 @@ const Store = () => {
   const [showFilteredResult, setShowFilteredResult] = useState<boolean>(false);
   const [nothingFound, setNothingFound] = useState<boolean>(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
-  //
+  const [uncheckFilter, setUncheckFilter] = useState<boolean>(false);
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -82,15 +82,23 @@ const Store = () => {
     cleanLocalStorage();
   };
 
+  const handleSeeAllProductsClick = () => {
+    setShowFilteredResult(false);
+    setShowFilterDropdown(false);
+    setUncheckFilter(true);
+  };
+
   let listOfMilkProducts;
 
   useEffect(() => {
     getFromLocalStorage();
     fetchAllProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     updateSearchList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   useEffect(() => {
@@ -104,26 +112,25 @@ const Store = () => {
   if (showFilteredResult && !nothingFound) {
     listOfMilkProducts = (
       <>
-      <h5 className="amount-products">{search.length} products</h5>
-      <div className="store-products-container">
-        {search &&
-          search.map((p, index) => (
-            <div key={index}>
-              <NavLink to={`/milk-products/${p.id}`} state={p}>
-                <Item product={p} />
-              </NavLink>
-            </div>
-          ))}
-      </div>
+        <h5 className="amount-products">{search.length} products</h5>
+
+        <div className="store-products-container">
+          {search &&
+            search.map((p, index) => (
+              <div key={index}>
+                <NavLink to={`/milk-products/${p.id}`} state={p}>
+                  <Item product={p} />
+                </NavLink>
+              </div>
+            ))}
+        </div>
       </>
-      
     );
   } else {
     listOfMilkProducts = (
       <>
         <h5 className="amount-products">{listOfProducts.length} products</h5>
         <div className="store-products-container">
-          
           {listOfProducts &&
             listOfProducts.map((p, index) => (
               <div key={index}>
@@ -167,11 +174,16 @@ const Store = () => {
             </ul>
           </div>
         </div>
+        <p
+          className={showFilteredResult ? "all-products-button" : "hidden"}
+          onClick={handleSeeAllProductsClick}
+        >
+          See All Products
+        </p>
         <div className="filter-container">
           <div className="filter-head" onClick={handleFilterClick}>
             <BsFilterRight />
             {showFilterDropdown ? <p className="filter-x">X</p> : <p>Filter</p>}
-            
           </div>
           <div
             className={`filter-all-items ${
@@ -185,6 +197,8 @@ const Store = () => {
                 search={search}
                 setSearch={setSearch}
                 setShowFilteredResult={setShowFilteredResult}
+                showFilteredResult={showFilteredResult}
+                uncheckFilter={uncheckFilter}
               />
             ))}
           </div>

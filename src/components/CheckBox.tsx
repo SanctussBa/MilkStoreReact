@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IProduct } from "../types";
 import { useDataContext } from "../context/DataContext";
 
@@ -7,10 +7,12 @@ type CheckBoxProps = {
   search: IProduct[];
   setSearch: React.Dispatch<React.SetStateAction<IProduct[]>>;
   setShowFilteredResult: React.Dispatch<React.SetStateAction<boolean>>;
+  showFilteredResult: boolean;
+  uncheckFilter: boolean;
   
 };
 
-const CheckBox = ({ type, search, setSearch, setShowFilteredResult }: CheckBoxProps) => {
+const CheckBox = ({ type, search, setSearch, setShowFilteredResult, uncheckFilter, showFilteredResult }: CheckBoxProps) => {
     const { listOfProducts } = useDataContext();
   const [checked, setChecked] = useState<boolean>(false);
 
@@ -29,15 +31,18 @@ const CheckBox = ({ type, search, setSearch, setShowFilteredResult }: CheckBoxPr
             setSearch([]);
         } else {
             setSearch(listByType)
-        }
-
-        
+        } 
     }
   }
 
+  useEffect(() => {
+    setChecked(false)
+  }, [uncheckFilter])
+
+
   return (
     <div className="filter-item-container">
-      <input type="checkbox" name={type} value={type} onChange={handleCheckBox}/>
+      <input type="checkbox" name={type} value={type} onChange={handleCheckBox} checked={checked}/>
       <label className="filter-label" htmlFor={type}>
         {type}
       </label>

@@ -25,7 +25,7 @@ const NavBar = () => {
             About
           </h3>
         </Link>
-        <Link to={"/shopping-cart"}>
+        <Link to={"/shopping-cart"} >
           <div className="cart-container">
             <span className="navbar-link cart-icon">
               <RiShoppingCartLine />
