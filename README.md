@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+# Milk Store App | Front end | Typescript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Demo of this app:
+![demo](https://github.com/SanctussBa/MilkStoreReact/blob/master/app-demo.gif?raw=true)
 
-## Available Scripts
 
-In the project directory, you can run:
+## What is this project about?
 
-### `npm start`
+* This is Front-End part of full stack application.
+* Back end part you can find in this repository --> https://github.com/SanctussBa/MilkStoreAPI
+* Application imitates Vegan Milk Web store. 
+* This serves as React, TypeScript, Full-stack learning project. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What technologies were used?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* `React` with `TypeScript`
+* Routing: `react-router-dom`
+* Styling: `CSS`
+* Hooks: `useContext`, `useLocation`, `useState`, `useEffect`, `useNavigate`, `useLocalStorage`(custom)
+* `React icons`
 
-### `npm test`
+## Main features of this app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* On the first page load all products are fetched from back-end API
+* User can simulate purchase for Vegan Milk, add selected products into the cart and "Order".
+* On "Buy" click database storage in the back-end is depleted according to the order details.
+* User can perform data filtering and searching.
 
-### `npm run build`
+## What can be further improved?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Optimization of mobile responisive design. 
+* Adding Pagination
+* Implementing pricing system
+* Implementation of images according to Milk type
+* Website deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How you can clone and run this project?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From your command line, first clone this repo:
 
-### `npm run eject`
+```
+# Clone this repo
+>>> git clone git@github.com:SanctussBa/MilkStoreReact.git
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Go into the repository
+>>> cd .\MilkStoreReact\
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Remove current origin repository
+>>> git remote remove origin
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+```diff
+- Before running this app, you need to set up Back-End -
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Back end part you can find in this repository --> https://github.com/SanctussBa/MilkStoreAPI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After back end is set up:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Open `/milkstore/` directory with your IDE, open new terminal in your IDE.
+2. Install all packages and dependancies
+```
+>>> npm i
+```
+3. Start application
+```
+>>> npm start
+```
+
+App should be running by its own. If it is not running Open http://localhost:3000 to view it in the browser.
