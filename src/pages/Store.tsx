@@ -37,7 +37,6 @@ const Store = () => {
       setNothingFound(true);
     }
     setSearch(findProducts());
-    console.log(search);
     setSearchQuery("");
     setShowDropdown(false);
     setShowFilteredResult(true);
