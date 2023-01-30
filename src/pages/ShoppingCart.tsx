@@ -1,9 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import { useDataContext } from "../context/DataContext";
 
+
 const ShoppingCart = () => {
   const { cart, sendOrder } = useDataContext();
+
 
   const totalLiters = cart.reduce((n, { quantity }) => n + quantity, 0);
   const orderProducts = () => {
@@ -17,7 +19,7 @@ const ShoppingCart = () => {
       </div>
 
       {cart.map((item) => (
-        <CartItem key={item.id} {...item} />
+        <CartItem key={item.id} id={item.id} quantity={item.quantity} />
       ))}
 
       {totalLiters > 0 ? (

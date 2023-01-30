@@ -123,13 +123,16 @@ export function DataProvider({ children }: DataContextProps) {
     setFilterList(uniqueTypes);
   };
 
-
-
   useEffect(() => {
     getSearchList();
     getFilterList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listOfProducts]);
+
+  useEffect(() => {
+    fetchAllProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
 
   return (
