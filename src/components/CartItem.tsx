@@ -1,5 +1,4 @@
 import { useDataContext } from "../context/DataContext";
-import milkImg from "../milk.jpg";
 import { ImCross } from "react-icons/im";
 
 type CartItemProps = {
@@ -13,10 +12,12 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
   const item = listOfProducts.find((i) => i.id === id);
   if (item == null) return null;
 
+  const picture = require(`../pics/${item.type}.jpg`)
+
   return (
     <div className="cart-item-container">
         <div className="item-img-container">
-          <img className="item-img" src={milkImg} alt="Milk-img" />
+          <img className="item-img" src={picture} alt="Milk-img" />
         </div>
         <div className="flex-column cart-left">
             <div className="flex-row cart-left-top">

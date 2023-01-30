@@ -1,15 +1,16 @@
 import { IProduct } from "../types";
-import milkImg from "../milk.jpg";
 
 type ItemProps = {
   product: IProduct;
 };
 const Item = ({ product }: ItemProps) => {
+
+  const picture = require(`../pics/${product.type}.jpg`)
   return (
     <div className="item-container">
       <div className="item-img-name-container">
         <div className="item-img-container">
-          <img className="item-img" src={milkImg} alt="Milk-img" />
+          <img className="item-img" src={picture} alt="Milk-img" />
         </div>
         <div>
           <h4 className="item-name">{product.name}</h4>
