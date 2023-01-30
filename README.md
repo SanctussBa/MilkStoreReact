@@ -31,7 +31,6 @@
 * Optimization of mobile responisive design. 
 * Adding Pagination
 * Implementing pricing system
-* Implementation of images according to Milk type
 * Website deployment
 
 ## How you can clone and run this project?
