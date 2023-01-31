@@ -528,3 +528,33 @@ i {
 .about-img {
   width: -webkit-fill-available;
 }
+
+.pagination {
+  
+  width: 70%;
+  padding: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pagination-item {
+  padding: 5px 10px;
+  border-radius: 7px;
+  background-color: rgb(185, 154, 50);
+  margin-right: 10px;
+  color: white;
+  border: 1px solid transparent;
+  font-size: 1.2rem;
+  transition: .2s ease;
+  
+}
+.pagination-item:hover, .current-page {
+  cursor: pointer;
+  background-color: antiquewhite;
+  color: black;
+  font-weight: bold;
+  border: 1px solid grey;
+}
+

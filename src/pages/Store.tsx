@@ -6,6 +6,7 @@ import { useDataContext } from "../context/DataContext";
 import NoMatch from "./NoMatch";
 import CheckBox from "../components/CheckBox";
 import { BsFilterRight } from "react-icons/bs";
+import Pagination from "../components/Pagination";
 
 const Store = () => {
   const {
@@ -24,6 +25,13 @@ const Store = () => {
   const [nothingFound, setNothingFound] = useState<boolean>(false);
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
   const [uncheckFilter, setUncheckFilter] = useState<boolean>(false);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(8);
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItems = listOfProducts.slice(firstItemIndex, lastItemIndex);
+  const searchItems = search.slice(firstItemIndex, lastItemIndex);
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -114,8 +122,8 @@ const Store = () => {
         <h5 className="amount-products">{search.length} products</h5>
 
         <div className="store-products-container">
-          {search &&
-            search.map((p, index) => (
+          {searchItems &&
+            searchItems.map((p, index) => (
               <div key={index}>
                 <NavLink to={`/milk-products/${p.id}`} state={p}>
                   <Item product={p} />
@@ -123,6 +131,12 @@ const Store = () => {
               </div>
             ))}
         </div>
+        <Pagination
+        totalItems={search.length}
+        itemsPerPage={itemsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
       </>
     );
   } else {
@@ -130,8 +144,8 @@ const Store = () => {
       <>
         <h5 className="amount-products">{listOfProducts.length} products</h5>
         <div className="store-products-container">
-          {listOfProducts &&
-            listOfProducts.map((p, index) => (
+          {currentItems &&
+            currentItems.map((p, index) => (
               <div key={index}>
                 <NavLink to={`/milk-products/${p.id}`} state={p}>
                   <Item product={p} />
@@ -139,6 +153,12 @@ const Store = () => {
               </div>
             ))}
         </div>
+        <Pagination
+        totalItems={listOfProducts.length}
+        itemsPerPage={itemsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
       </>
     );
   }
@@ -205,6 +225,8 @@ const Store = () => {
       </div>
 
       {!nothingFound ? listOfMilkProducts : <NoMatch />}
+      
+      
     </main>
   );
 };
