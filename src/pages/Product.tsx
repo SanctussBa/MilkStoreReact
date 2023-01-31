@@ -1,9 +1,8 @@
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import milkImg from "../milk.jpg";
+
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { useState } from "react";
 import { useDataContext } from "../context/DataContext";
-// import { useDataContext } from "../context/DataContext";
 
 const Product = () => {
   const location = useLocation();
@@ -12,6 +11,8 @@ const Product = () => {
 
   const [liter, setLiter] = useState<number>(0);
   const { increaseCartQuantity } = useDataContext();
+
+  const picture = require(`../pics/${product.type}.jpg`);
 
   const handleLiterCount = (e: any) => {
     e.preventDefault();
@@ -23,7 +24,9 @@ const Product = () => {
 
   const addProduct = (id: string, quantity: number) => {
     var num: number = +quantity;
-    increaseCartQuantity(id, num);
+    if (num !== 0) {
+      increaseCartQuantity(id, num);
+    }
   };
   return (
     <div className="product">
@@ -34,13 +37,18 @@ const Product = () => {
       </div>
       <div className="product-container">
         <div className="product-img-container">
-          <img className="product-img" src={milkImg} alt="Milk-img" />
+          <img className="product-img" src={picture} alt="Milk-img" />
         </div>
         <div className="product-container-right">
           <div>
             <h2>{product.name} </h2>
             <h3 className="product-type">{product.type}</h3>
-            <p><span className="span-liter available">{product.storage - liter}</span> liters available</p>
+            <p>
+              <span className="span-liter available">
+                {product.storage - liter}
+              </span>{" "}
+              liters available
+            </p>
           </div>
           <div>
             <input
@@ -55,14 +63,16 @@ const Product = () => {
             </p>
           </div>
           <div className="add-to-cart-button-container">
-            <Link to={"/shopping-cart"}>
-              <button
-                onClick={() => addProduct(product.id, liter)}
-                className="add-to-cart-button"
-              >
-                Add to Cart
-              </button>
-            </Link>
+            <div className="add-to-cart">
+              <Link to={"/shopping-cart"}>
+                <button
+                  onClick={() => addProduct(product.id, liter)}
+                  className={`add-to-cart-button ${liter < 1 && "hide"}`}
+                >
+                  Add to Cart
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

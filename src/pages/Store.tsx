@@ -87,12 +87,14 @@ const Store = () => {
   const handleFilterClick = () => {
     setShowFilterDropdown(!showFilterDropdown);
     cleanLocalStorage();
+    
   };
 
   const handleSeeAllProductsClick = () => {
     setShowFilteredResult(false);
     setShowFilterDropdown(false);
     setUncheckFilter(true);
+    setCurrentPage(1);
   };
 
   let listOfMilkProducts;

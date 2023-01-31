@@ -348,6 +348,13 @@ input[type="text"],
   color: white;
   border-radius: 5px;
 }
+.add-to-cart {
+  height: 50px;
+
+}
+.hide {
+  display: none;
+}
 .add-to-cart-button:hover {
   cursor: pointer;
   background-color: white;
