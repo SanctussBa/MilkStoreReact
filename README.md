@@ -1,7 +1,7 @@
 # Milk Store App | Front end | Typescript
 
 ### Demo of this app:
-![demo](https://github.com/SanctussBa/MilkStoreReact/blob/master/app-demo.gif?raw=true)
+![demo](https://github.com/SanctussBa/MilkStoreReact/blob/master/app-demo2.gif?raw=true)
 
 
 ## What is this project about?
