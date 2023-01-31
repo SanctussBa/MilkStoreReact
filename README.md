@@ -29,7 +29,6 @@
 ## What can be further improved?
 
 * Optimization of mobile responisive design. 
-* Adding Pagination
 * Implementing pricing system
 * Website deployment
 
